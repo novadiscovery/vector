@@ -1084,7 +1084,7 @@ reverse = G.reverse
 -- often much more efficient.
 --
 -- > backpermute <a,b,c,d> <0,3,2,3,1,0> = <a,d,c,d,b,a>
-backpermute :: Vector a -> Vector Int -> Vector a
+backpermute :: HasCallStack => Vector a -> Vector Int -> Vector a
 {-# INLINE backpermute #-}
 backpermute = G.backpermute
 
@@ -2030,6 +2030,6 @@ unsafeCopy = G.unsafeCopy
 
 -- | /O(n)/ Copy an immutable vector into a mutable one. The two vectors must
 -- have the same length.
-copy :: PrimMonad m => MVector (PrimState m) a -> Vector a -> m ()
+copy :: (PrimMonad m, HasCallStack) => MVector (PrimState m) a -> Vector a -> m ()
 {-# INLINE copy #-}
 copy = G.copy
